@@ -34,6 +34,12 @@
             android:name="myapplication.app.Data"
             android:label="@string/title_activity_data" >
         </activity>
+
+        <activity
+            android:name="myapplication.app.BaseActivity" >
+
+        android:label="@string/title_activity_data" >
+        </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
