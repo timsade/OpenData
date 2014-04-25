@@ -1,37 +1,64 @@
 package myapplication.app;
 
-import android.support.v7.app.ActionBarActivity;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.StatusLine;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.animation.TranslateAnimation;
+import android.webkit.WebView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity
+{
+
+
+    private TextView tv;
+    public static final int RESULT_Main = 1;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        startActivityForResult(new Intent(MainActivity.this, Login.class), RESULT_Main);
+
+    }
+
+    private void startup(Intent i)
+    {
+        // Récupère l'identifiant
+        //int user = i.getIntExtra("userid",-1);
+
+        Intent intent = new Intent(MainActivity.this, Subscribe.class);
+        startActivity(intent);
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if(requestCode == RESULT_Main && resultCode == RESULT_CANCELED)
+            finish();
+        else
+            startup(data);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
+
 
 }

@@ -1,0 +1,109 @@
+<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/viewSwitcher">
+
+    <RelativeLayout
+        android:id="@+id/relative1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/backgr2">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" A Strasbourg : "
+            android:id="@+id/tv_ouais"
+            android:textColor="#ffffff"
+            android:focusableInTouchMode="true"
+            android:textIsSelectable="false"
+            android:textSize="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:layout_marginTop="143dp"
+            android:background="#9fbd1a"/>
+
+
+        <RadioGroup
+            android:id="@+id/radioSxb"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="J'y habite"
+                android:id="@+id/cb_habite"
+                android:textSize="20dp"
+                android:background="#9bbd15"
+                android:layout_marginTop="150dp"
+                android:width="120dp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Je visite"
+                android:id="@+id/cb_visite"
+                android:textSize="20dp"
+                android:background="#9bbd15"
+                android:width="120dp"
+                android:layout_marginTop="30dp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Je suis de passage"
+                android:id="@+id/cb_passage"
+                android:textSize="20dp"
+                android:background="#9bbd15"
+                android:width="220dp"
+                android:layout_marginTop="30dp" />
+
+        </RadioGroup>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/backgr">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vous avez :"
+            android:id="@+id/tv_vousetes"
+            android:textColor="#ffffff"
+            android:focusableInTouchMode="true"
+            android:textSize="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="143dp"
+            android:background="#9eaeff"
+            android:autoText="false" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:gravity="center_vertical|top"
+            android:id="@+id/editText"
+            android:layout_below="@+id/tv_vousetes"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="136dp"
+            android:textSize="50dp"
+            android:width="60dp"
+            android:textColor="#fcfdff"
+            android:background="#9ea1ff"
+            android:layout_alignParentStart="false" />
+
+
+    </RelativeLayout>
+
+</ViewFlipper>
