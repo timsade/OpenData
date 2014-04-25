@@ -30,6 +30,10 @@
             android:name="myapplication.app.Login"
             android:label="@string/title_activity_login" >
         </activity>
+        <activity
+            android:name="myapplication.app.Data"
+            android:label="@string/title_activity_data" >
+        </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 

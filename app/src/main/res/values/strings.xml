@@ -6,5 +6,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_subscribe">Subscribe</string>
     <string name="title_activity_login">Login</string>
+    <string name="title_activity_data">Data</string>
+
 
 </resources>

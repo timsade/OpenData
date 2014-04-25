@@ -45,7 +45,7 @@ public class MainActivity extends Activity
         // Récupère l'identifiant
         //int user = i.getIntExtra("userid",-1);
 
-        Intent intent = new Intent(MainActivity.this, Subscribe.class);
+        Intent intent = new Intent(MainActivity.this, Data.class);
         startActivity(intent);
     }
 
