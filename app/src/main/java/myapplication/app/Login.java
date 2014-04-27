@@ -301,7 +301,7 @@ public class Login extends Activity
         @Override
         public void onClick(View v)
         {
-            Intent intent = new Intent(Login.this, Subscribe.class);
+            Intent intent = new Intent(Login.this, RegisterActivity.class);
             startActivity(intent);
         }
     };
