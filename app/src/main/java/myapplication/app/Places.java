@@ -43,10 +43,8 @@ public class Places extends ListActivity {
     private static final String	UPDATE_URL	= "http://tristanguillevin.fr/getPlaces.php";
     private ProgressDialog pDialog;
 
-    private static final String TAG_PLACES = "places";
     private static final String TAG_ID = "id_place";
     private static final String TAG_NAME = "nom_place";
-    private static final String TAG_ADDRESS = "address_place";
     private static final String TAG_DESC = "desc_place";
     private static final String TAG_TAG = "label_tag";
 
@@ -54,7 +52,7 @@ public class Places extends ListActivity {
     ArrayList<HashMap<String, String>> placeList;
 
     private ArrayList<String> lstPlaces = new ArrayList<String>();
-    private ListView listView;
+    private ListView lv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +61,7 @@ public class Places extends ListActivity {
 
         placeList = new ArrayList<HashMap<String, String>>();
 
-        ListView lv = getListView();
+        lv = getListView();
 
         // Listview on item click listener
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -72,100 +70,22 @@ public class Places extends ListActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 // getting values from selected ListItem
-                String name = ((TextView) view.findViewById(R.id.namePlace))
-                        .getText().toString();
-                String tag = ((TextView) view.findViewById(R.id.tagPlace))
-                        .getText().toString();
-                String address = ((TextView) view.findViewById(R.id.addressPlace))
-                        .getText().toString();
-                String desc = ((TextView) view.findViewById(R.id.descPlace))
-                        .getText().toString();
-
+                String idP = ((TextView) view.findViewById(R.id.tv_idPlace)).getText().toString();
                 // Starting single contact activity
                 Intent in = new Intent(Places.this, PlaceDetails.class);
-                in.putExtra(TAG_NAME, name);
-                in.putExtra(TAG_TAG, tag);
-                in.putExtra(TAG_ADDRESS, address);
-                in.putExtra(TAG_DESC, desc);
+                in.putExtra(TAG_ID, idP);
                 startActivity(in);
-
             }
         });
 
-        new GetContacts().execute();
-/*
-        JSONArray jArray = null;
-        String result = null;
-        StringBuilder sb = null;
-        InputStream is = null;
-        ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-
-        DefaultHttpClient client = new DefaultHttpClient();
-        HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
-
-        HttpResponse response;
-        HttpEntity entity;
-
-        lstPlaces.add("Place 1");
-        lstPlaces.add("Place 2");
-        lstPlaces.add("Place 3");
-        lstPlaces.add("Place 4");
-        lstPlaces.add("Place 5");
-        lstPlaces.add("Place 6");
-        lvRefresh();
-
-        try
-        {
-            // On établit un lien avec le script PHP
-            HttpPost post = new HttpPost(UPDATE_URL);
-            post.setHeader("Content-type", "application/json");
-            post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-            response = client.execute(post);
-            entity = response.getEntity();
-            is = entity.getContent();
-        }catch(Exception e){
-            Log.e("log_tag", "Error in http connection" + e.toString());
-        }
-
-//convert response to string
-        try{
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8);
-            sb = new StringBuilder();
-            sb.append(reader.readLine() + "\n");
-
-            String line="0";
-            while ((line = reader.readLine()) != null) {
-                sb.append(line + "\n");
-            }
-            is.close();
-            result=sb.toString();
-        }catch(Exception e){
-            Log.e("log_tag", "Error converting result "+e.toString());
-        }
-
-        String name;
-        try{
-            jArray = new JSONArray(result);
-            JSONObject json_data=null;
-
-            for(int i=0;i<jArray.length();i++){
-                json_data = jArray.getJSONObject(i);
-                lstPlaces.add(json_data.getString("nom_place"));//here "Name" is the column name in database
-            }
-            lvRefresh();
-        }
-        catch(JSONException e1){
-            Toast.makeText(getBaseContext(), "No Data Found", Toast.LENGTH_LONG).show();
-        }
-
-*/
+        new GetPlaces().execute();
 
     }
 
 /**
  * Async task class to get json by making HTTP call
  * */
-private class GetContacts extends AsyncTask<Void, Void, Void> {
+private class GetPlaces extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected void onPreExecute() {
@@ -201,15 +121,8 @@ private class GetContacts extends AsyncTask<Void, Void, Void> {
 
                     String id = c.getString(TAG_ID);
                     String name = c.getString(TAG_NAME);
-                    String address = c.getString(TAG_ADDRESS);
                     String desc = c.getString(TAG_DESC);
                     String tag = c.getString(TAG_TAG);
-
-                    // Phone node is JSON Object
-                    /*JSONObject phone = c.getJSONObject(TAG_PHONE);
-                    String mobile = phone.getString(TAG_PHONE_MOBILE);
-                    String home = phone.getString(TAG_PHONE_HOME);
-                    String office = phone.getString(TAG_PHONE_OFFICE);*/
 
                     // tmp hashmap for single contact
                     HashMap<String, String> place = new HashMap<String, String>();
@@ -217,7 +130,6 @@ private class GetContacts extends AsyncTask<Void, Void, Void> {
                     // adding each child node to HashMap key => value
                     place.put(TAG_ID, id);
                     place.put(TAG_NAME, name);
-                    place.put(TAG_ADDRESS, address);
                     place.put(TAG_DESC, desc);
                     place.put(TAG_TAG, tag);
 
@@ -245,21 +157,15 @@ private class GetContacts extends AsyncTask<Void, Void, Void> {
          * */
         ListAdapter adapter = new SimpleAdapter(
                 Places.this, placeList,
-                R.layout.list_item, new String[] { TAG_NAME, TAG_ADDRESS,
-                TAG_DESC, TAG_TAG }, new int[] { R.id.namePlace,
-                R.id.addressPlace, R.id.descPlace, R.id.tagPlace});
+                R.layout.list_item, new String[] { TAG_NAME, TAG_DESC,
+                TAG_TAG, TAG_ID }, new int[] { R.id.namePlace,
+                R.id.descPlace, R.id.tagPlace, R.id.tv_idPlace});
 
         setListAdapter(adapter);
     }
 
 }
-/*
-    private void lvRefresh() {
-        LogAdapter logAdapter = new LogAdapter(lstPlaces);
-        listView.setAdapter(logAdapter);
 
-    }
-*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         
@@ -279,39 +185,4 @@ private class GetContacts extends AsyncTask<Void, Void, Void> {
         }
         return super.onOptionsItemSelected(item);
     }
-/*
-    private class LogAdapter extends BaseAdapter {
-
-        private ArrayList stringList;
-
-        public LogAdapter(ArrayList arraylistLog) {
-            // TODO Auto-generated constructor stub
-            this.stringList = arraylistLog;
-        }
-
-        public int getCount() {
-            // TODO Auto-generated method stub
-            return stringList.size();
-        }
-
-        @Override
-        public Object getItem(int arg0) {
-            // TODO Auto-generated method stub
-            return stringList.get(arg0);
-        }
-
-        @Override
-        public long getItemId(int arg0) {
-            // TODO Auto-generated method stub
-            return arg0;
-        }
-
-        @Override
-        public View getView(int arg0, View arg1, ViewGroup arg2) {
-            TextView v = (TextView) new TextView(getBaseContext());
-            v.setText((CharSequence) this.stringList.get(arg0));
-            return v;
-        }
-    }
-    */
 }

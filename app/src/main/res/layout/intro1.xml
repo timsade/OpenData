@@ -18,7 +18,7 @@
         android:paddingLeft="8dp"
         android:paddingRight="5dp"
         android:paddingTop="5dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="300dp"
         android:textColorHint="#feffff"
         android:layout_centerHorizontal="true"
         android:textColor="#fffefc"
@@ -29,7 +29,7 @@
         android:id="@+id/et_passwd"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:gravity="left"
         android:hint="Password"
@@ -40,17 +40,20 @@
         android:paddingRight="5dp"
         android:paddingTop="5dp"
         android:textColorHint="#feffff"
-        android:textColor="#fffefc" />
+        android:textColor="#fffefc"
+        android:layout_below="@+id/et_user"/>
 
     <Button
         android:id="@+id/btn_go"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="439dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="35dp"
         android:layout_centerHorizontal="true"
         android:text="Go !"
         android:background="#9cbd19"
-        android:textColor="#fffef6" />
+        android:textColor="#fffef6"
+        android:layout_below="@+id/et_passwd"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -63,22 +66,26 @@
         android:textSize="20dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Places"
+        android:text="Les lieux"
         android:id="@+id/getPlaces"
         android:textColor="#ffffff"
         android:focusableInTouchMode="true"
         android:textIsSelectable="false"
         android:textSize="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
         android:layout_alignBottom="@+id/tv_subscribe"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"/>
 
 
 </RelativeLayout>
