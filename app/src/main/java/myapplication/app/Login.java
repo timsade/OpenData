@@ -47,6 +47,8 @@ public class Login extends Activity
 
     public TextView tv_subscribe;
 
+    public TextView getPlaces;
+
 
     public void onCreate(Bundle savedInstanceState)
     {
@@ -68,6 +70,9 @@ public class Login extends Activity
         tv_subscribe = (TextView) findViewById(R.id.tv_subscribe);
 
         tv_subscribe.setOnClickListener(this.subscribeListener);
+
+        getPlaces = (TextView) findViewById(R.id.getPlaces);
+        getPlaces.setOnClickListener(this.placesListener);
 
 
         // Définition du listener du bouton
@@ -302,6 +307,17 @@ public class Login extends Activity
         public void onClick(View v)
         {
             Intent intent = new Intent(Login.this, RegisterActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    public View.OnClickListener placesListener = new View.OnClickListener()
+    {
+
+        @Override
+        public void onClick(View v)
+        {
+            Intent intent = new Intent(Login.this, Places.class);
             startActivity(intent);
         }
     };

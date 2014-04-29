@@ -35,9 +35,17 @@
             android:label="@string/title_activity_data" >
         </activity>
         <activity
-            android:name="myapplication.app.BaseActivity" >
+            android:name="myapplication.app.Places"
+            android:label="@string/title_activity_places" >
+        </activity>
+        <activity android:name="myapplication.app.BaseActivity" >
+        </activity>
+        <activity
+            android:name="myapplication.app.PlaceDetails"
+            android:label="@string/title_activity_place_details" >
         </activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
