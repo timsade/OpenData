@@ -131,7 +131,7 @@ public class PlaceDetails extends Activity {
             address_place.setText(place.get(TAG_ADDRESS));
             tag_place.setText(place.get(TAG_TAG));
             openings_place.setText(place.get(TAG_OPENINGS));
-
+            Log.d("Horaires d'ouveture"," > "+place.get(TAG_OPENINGS));
             /**
              * Updating parsed JSON data into ListView
              *
