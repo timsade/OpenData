@@ -3,6 +3,8 @@ package myapplication.app;
         import java.util.ArrayList;
 
         import android.content.Context;
+        import android.content.Intent;
+        import android.content.SharedPreferences;
         import android.graphics.Bitmap;
         import android.graphics.BitmapFactory;
         import android.os.Bundle;
@@ -28,6 +30,15 @@ public class Data extends BaseActivity implements OnDismissCallback {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_googlecards);
+
+        SharedPreferences preferences = getSharedPreferences("SXBN", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        if(preferences.getString("SXBN_exist", "").equals(""))
+        {
+            Intent intent = new Intent(Data.this, Questions.class);
+            startActivity(intent);
+        }
 
         ListView listView = (ListView) findViewById(R.id.activity_googlecards_listview);
 

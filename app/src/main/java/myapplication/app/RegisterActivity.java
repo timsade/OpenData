@@ -34,14 +34,9 @@ public class RegisterActivity extends Activity
 {
 
     Button btnRegister;
-    Button btnLinkToLogin;
     EditText inputFullName;
     EditText inputEmail;
     EditText inputPassword;
-
-    /****************/
-  /* Réponse JSON */
-    /****************/
 
     private static String KEY_SUCCESS = "success";
 

@@ -61,7 +61,7 @@ public class Login extends Activity
         progressDialog.setMessage("Please wait...");
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
-        // Récupération des éléments de la vue définis dans le xml
+
         UserEditText = (EditText) findViewById(R.id.et_user);
 
         PassEditText = (EditText) findViewById(R.id.et_passwd);
@@ -74,8 +74,6 @@ public class Login extends Activity
         getPlaces = (TextView) findViewById(R.id.getPlaces);
         getPlaces.setOnClickListener(this.placesListener);
 
-
-        // Définition du listener du bouton
         button.setOnClickListener(new View.OnClickListener()
         {
 
@@ -94,7 +92,6 @@ public class Login extends Activity
                     String user = UserEditText.getText().toString();
 
                     String pass = PassEditText.getText().toString();
-                    // On appelle la fonction doLogin qui va communiquer avec le PHP
                     doLogin(user, pass);
 
                 }
@@ -109,7 +106,6 @@ public class Login extends Activity
 
     private void quit(boolean success, Intent i)
     {
-        // On envoie un résultat qui va permettre de quitter l'appli
         setResult((success) ? Activity.RESULT_OK : Activity.RESULT_CANCELED, i);
         finish();
 
@@ -117,7 +113,6 @@ public class Login extends Activity
 
     private void createDialog(String title, String text)
     {
-        // Création d'une popup affichant un message
         AlertDialog ad = new AlertDialog.Builder(this)
                 .setPositiveButton("Ok", null).setTitle(title).setMessage(text)
                 .create();

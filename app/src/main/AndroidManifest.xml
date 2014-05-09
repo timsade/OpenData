@@ -40,6 +40,8 @@
         </activity>
         <activity android:name="myapplication.app.BaseActivity" >
         </activity>
+        <activity android:name="myapplication.app.Questions" >
+        </activity>
         <activity
             android:name="myapplication.app.PlaceDetails"
             android:label="@string/title_activity_place_details" >

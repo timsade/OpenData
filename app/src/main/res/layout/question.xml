@@ -1,0 +1,143 @@
+<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/viewFlipper"
+    android:background="@drawable/backgr2">
+
+
+
+    <RelativeLayout
+        android:id="@+id/q1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" A Strasbourg : "
+            android:id="@+id/tv_intro"
+            android:focusableInTouchMode="true"
+            android:background="#9bbd15"
+            android:textColor="#f0f0f0"
+            android:textIsSelectable="false"
+            android:textSize="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:layout_marginTop="143dp"/>
+
+
+        <RadioGroup
+            android:id="@+id/radiog1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Je visite"
+                android:id="@+id/cb_visite"
+                android:textSize="25dp"
+                android:background="#9bbd15"
+                android:textColor="#f0f0f0"
+                android:width="150dp"
+                android:layout_marginTop="150dp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="J'y habite"
+                android:id="@+id/cb_habite"
+                android:textSize="25dp"
+                android:background="#9bbd15"
+                android:textColor="#f0f0f0"
+                android:layout_marginTop="30dp"
+                android:width="150dp"/>
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Je suis de passage"
+                android:id="@+id/cb_passage"
+                android:textSize="25dp"
+                android:background="#9bbd15"
+                android:textColor="#f0f0f0"
+                android:width="250dp"
+                android:layout_marginTop="30dp" />
+
+        </RadioGroup>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/q2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Bonjour Elsa, tu vas : "
+            android:id="@+id/tv_intro"
+            android:focusableInTouchMode="true"
+            android:background="#9bbd15"
+            android:textColor="#f0f0f0"
+            android:textIsSelectable="false"
+            android:textSize="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:layout_marginTop="143dp"/>
+
+
+        <RadioGroup
+            android:id="@+id/radiog2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bien !"
+                android:id="@+id/cb_bien"
+                android:textSize="25dp"
+                android:background="#9bbd15"
+                android:textColor="#f0f0f0"
+                android:width="150dp"
+                android:layout_marginTop="150dp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Très bien !"
+                android:id="@+id/cb_tb"
+                android:textSize="25dp"
+                android:background="#9bbd15"
+                android:textColor="#f0f0f0"
+                android:layout_marginTop="30dp"
+                android:width="150dp"/>
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mieux que ça !"
+                android:id="@+id/cb_mieux"
+                android:textSize="25dp"
+                android:background="#9bbd15"
+                android:textColor="#f0f0f0"
+                android:width="250dp"
+                android:layout_marginTop="30dp" />
+
+        </RadioGroup>
+
+    </RelativeLayout>
+
+</ViewFlipper>
