@@ -168,6 +168,7 @@ public class Data extends BaseActivity implements OnDismissCallback {
                         Place pTemp;
                         pListTag = new ArrayList<Integer>();
 
+
                         JSONArray jsonArray = new JSONArray(jsonStr);
 
                         // looping through All Contacts
