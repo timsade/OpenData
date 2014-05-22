@@ -1,13 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relative1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgr">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#9cbd19">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SxB NOW"
+            android:id="@+id/title"
+            android:textSize="25dp"
+            android:layout_marginLeft="9dp"
+            android:layout_centerVertical="true"
+            android:textColor="#ffffff" />
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/btn_map"
+            android:layout_marginRight="10dp"
+            android:layout_alignTop="@+id/title"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/map" />
+
+    </RelativeLayout>
+
+
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_googlecards_listview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e2e2e2"
     android:clipToPadding="false"
-    android:divider="@null"
-    android:dividerHeight="16dp"
-    android:fadingEdge="none"
-    android:padding="16dp"
-    android:layout_marginTop="@dimen/paddingTop"
+    android:layout_marginTop="40dp"
     android:scrollbarStyle="outsideOverlay" />
+
+
+
+
+</RelativeLayout>
