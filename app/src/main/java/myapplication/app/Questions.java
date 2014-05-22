@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.ViewFlipper;
 
-public class Questions extends Activity {
+public class  Questions extends Activity {
 
     ViewFlipper viewFlipper;
     RadioGroup radioGroup;

@@ -46,6 +46,7 @@ public class MainActivity extends Activity
         //int user = i.getIntExtra("userid",-1);
 
         Intent intent = new Intent(MainActivity.this, Data.class);
+        intent.putExtra("UserID", i.getIntExtra("userid", -1));
         startActivity(intent);
     }
 
