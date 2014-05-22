@@ -5,7 +5,7 @@
     android:background="@drawable/card_background_white"
     android:orientation="vertical"
     android:padding="16dp" >
-<!--
+
     <TextView
         android:id="@+id/activity_googlecard_namePlace"
         android:layout_width="fill_parent"
@@ -39,7 +39,7 @@
         android:id="@+id/activity_googlecard_tv_idPlace"
         android:visibility="gone" />
 
--->
+
     <TextView
         android:id="@+id/activity_googlecards_card_textview"
         android:layout_width="match_parent"

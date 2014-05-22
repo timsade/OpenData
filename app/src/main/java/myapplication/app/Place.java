@@ -41,5 +41,6 @@ public class Place {
     public String getTagPlace(){ return this.tagPlace; }
     public float getGpsXPlace(){ return this.gpsXPlace ; }
     public float getGpsYPlace(){ return this.gpsYPlace ; }
+    public String getDescriptionPlace(){ return this.descriptionPlace; }
 
 }

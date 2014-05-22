@@ -168,7 +168,6 @@ public class Data extends BaseActivity implements OnDismissCallback {
                         Place pTemp;
                         pListTag = new ArrayList<Integer>();
 
-
                         JSONArray jsonArray = new JSONArray(jsonStr);
 
                         // looping through All Contacts
@@ -207,17 +206,18 @@ public class Data extends BaseActivity implements OnDismissCallback {
             if (pDialog.isShowing())
                 pDialog.dismiss();
 
-            mGoogleCardsAdapter.addAll(pListTag);
+            mGoogleCardsAdapter.addAll(pList);
         }
 
     }
 
-    private static class GoogleCardsAdapter extends ArrayAdapter<Integer> {
+    private static class GoogleCardsAdapter extends ArrayAdapter<Place> {
 
         private final Context mContext;
         private final LruCache<Integer, Bitmap> mMemoryCache;
 
         public GoogleCardsAdapter(final Context context) {
+            //super(places);
             mContext = context;
 
             final int cacheSize = (int) (Runtime.getRuntime().maxMemory() / 1024);
@@ -231,14 +231,19 @@ public class Data extends BaseActivity implements OnDismissCallback {
             };
         }
 
-        public View getView(final int position, final View convertView, final ViewGroup parent/*, final String name, final String tag, final String desc*/) {
+        public View getView(final int position, final View convertView, final ViewGroup parent) {
             ViewHolder viewHolder;
             View view = convertView;
             if (view == null) {
                 view = LayoutInflater.from(mContext).inflate(R.layout.activity_googlecards_card, parent, false);
 
                 viewHolder = new ViewHolder();
-                viewHolder.textView = (TextView) view.findViewById(R.id.activity_googlecards_card_textview);
+                viewHolder.tv_namePlace = (TextView) view.findViewById(R.id.activity_googlecard_namePlace);
+                viewHolder.tv_tagPlace = (TextView) view.findViewById(R.id.activity_googlecard_tagPlace);
+                viewHolder.tv_descPlace = (TextView) view.findViewById(R.id.activity_googlecard_descPlace);
+//                viewHolder.textView = (TextView) view.findViewById(R.id.activity_googlecards_card_textview);
+  //              viewHolder.textView = (TextView) view.findViewById(R.id.activity_googlecards_card_textview);
+    //            viewHolder.textView = (TextView) view.findViewById(R.id.activity_googlecards_card_textview);
                 /*
                 viewHolder.tv_namePlace = (TextView) view.findViewById(R.id.activity_googlecard_namePlace);
                 viewHolder.tv_tagPlace = (TextView) view.findViewById(R.id.activity_googlecard_tagPlace);
@@ -246,22 +251,22 @@ public class Data extends BaseActivity implements OnDismissCallback {
                 */
                 view.setTag(viewHolder);
 
-                viewHolder.imageView = (ImageView) view.findViewById(R.id.activity_googlecards_card_imageview);
+                //viewHolder.imageView = (ImageView) view.findViewById(R.id.activity_googlecards_card_imageview);
             } else {
                 viewHolder = (ViewHolder) view.getTag();
             }
+            Place p = getItem(position);
 
-            /*
-            viewHolder.tv_namePlace.setText(name);
-            viewHolder.tv_tagPlace.setText(tag);
-            viewHolder.tv_descPlace.setText(desc);
-            */
-            viewHolder.textView.setText("Id du lieux : " + (getItem(position) + 1));
-            setImageView(viewHolder, position);
+            viewHolder.tv_namePlace.setText(p.getNamePlace());
+            viewHolder.tv_tagPlace.setText(p.getTagPlace());
+            viewHolder.tv_descPlace.setText(p.getDescriptionPlace());
+
+            //viewHolder.textView.setText("Id du lieux : " + (getItem(position) + 1));
+            //setImageView(viewHolder, position);
 
             return view;
         }
-
+/*
         private void setImageView(final ViewHolder viewHolder, final int position) {
             int imageResId;
             switch (getItem(position) % 5) {
@@ -288,7 +293,7 @@ public class Data extends BaseActivity implements OnDismissCallback {
             }
             viewHolder.imageView.setImageBitmap(bitmap);
         }
-
+*/
         private void addBitmapToMemoryCache(final int key, final Bitmap bitmap) {
             if (getBitmapFromMemCache(key) == null) {
                 mMemoryCache.put(key, bitmap);
@@ -302,11 +307,10 @@ public class Data extends BaseActivity implements OnDismissCallback {
         private static class ViewHolder {
             TextView textView;
             ImageView imageView;
-            /*
+
             TextView tv_namePlace;
             TextView tv_tagPlace;
             TextView tv_descPlace;
-            */
         }
     }
 }
