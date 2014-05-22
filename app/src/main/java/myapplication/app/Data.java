@@ -5,6 +5,7 @@ package myapplication.app;
         import java.util.List;
         import java.util.StringTokenizer;
 
+        import android.app.Activity;
         import android.app.ProgressDialog;
         import android.content.Context;
         import android.content.Intent;
@@ -19,6 +20,7 @@ package myapplication.app;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.AbsListView;
+        import android.widget.ImageButton;
         import android.widget.ImageView;
         import android.widget.ListView;
         import android.widget.TextView;
@@ -34,7 +36,7 @@ package myapplication.app;
         import org.json.JSONException;
         import org.json.JSONObject;
 
-public class Data extends BaseActivity implements OnDismissCallback {
+public class Data extends Activity implements OnDismissCallback {
 
     private GoogleCardsAdapter mGoogleCardsAdapter;
     private static final String	GET_PLACES_URL	= "http://tristanguillevin.fr/getPlacesByTag.php";
@@ -54,6 +56,8 @@ public class Data extends BaseActivity implements OnDismissCallback {
     private ProgressDialog pDialog;
 
     SharedPreferences preferences;
+    ImageButton btn_map;
+
 
     HashMap<String, Integer> tagIdMap;
 
@@ -67,7 +71,7 @@ public class Data extends BaseActivity implements OnDismissCallback {
         editor.putString("tags", "spectacle_pratique_parking");
         editor.commit();
 
-        if(preferences.getString("SXBN_exist", "").equals(""))
+        if(!preferences.getString("SXBN_exist", "").equals(""))
         {
             Intent intent = new Intent(Data.this, Questions.class);
             startActivity(intent);
@@ -75,6 +79,9 @@ public class Data extends BaseActivity implements OnDismissCallback {
 
         fillTagIdMap();
         ListView listView = (ListView) findViewById(R.id.activity_googlecards_listview);
+
+        btn_map = (ImageButton) findViewById(R.id.btn_map);
+        btn_map.setOnClickListener(openmap);
 
         mGoogleCardsAdapter = new GoogleCardsAdapter(this);
         SwingBottomInAnimationAdapter swingBottomInAnimationAdapter = new SwingBottomInAnimationAdapter(new SwipeDismissAdapter(mGoogleCardsAdapter, this));
@@ -211,6 +218,17 @@ public class Data extends BaseActivity implements OnDismissCallback {
         }
 
     }
+
+    public View.OnClickListener openmap = new View.OnClickListener()
+    {
+
+        @Override
+        public void onClick(View v)
+        {
+            Intent intent = new Intent(Data.this, MyMapActivity.class);
+            startActivity(intent);
+        }
+    };
 
     private static class GoogleCardsAdapter extends ArrayAdapter<Integer> {
 
