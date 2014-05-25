@@ -260,14 +260,6 @@ public class Data extends Activity implements OnDismissCallback {
                 viewHolder.tv_namePlace = (TextView) view.findViewById(R.id.activity_googlecard_namePlace);
                 viewHolder.tv_tagPlace = (TextView) view.findViewById(R.id.activity_googlecard_tagPlace);
                 viewHolder.tv_descPlace = (TextView) view.findViewById(R.id.activity_googlecard_descPlace);
-//                viewHolder.textView = (TextView) view.findViewById(R.id.activity_googlecards_card_textview);
-  //              viewHolder.textView = (TextView) view.findViewById(R.id.activity_googlecards_card_textview);
-    //            viewHolder.textView = (TextView) view.findViewById(R.id.activity_googlecards_card_textview);
-                /*
-                viewHolder.tv_namePlace = (TextView) view.findViewById(R.id.activity_googlecard_namePlace);
-                viewHolder.tv_tagPlace = (TextView) view.findViewById(R.id.activity_googlecard_tagPlace);
-                viewHolder.tv_descPlace = (TextView) view.findViewById(R.id.activity_googlecard_descPlace);
-                */
                 view.setTag(viewHolder);
 
                 //viewHolder.imageView = (ImageView) view.findViewById(R.id.activity_googlecards_card_imageview);
@@ -326,7 +318,6 @@ public class Data extends Activity implements OnDismissCallback {
         private static class ViewHolder {
             TextView textView;
             ImageView imageView;
-
             TextView tv_namePlace;
             TextView tv_tagPlace;
             TextView tv_descPlace;
