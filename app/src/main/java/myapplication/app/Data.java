@@ -14,8 +14,9 @@ package myapplication.app;
         import android.graphics.BitmapFactory;
         import android.os.AsyncTask;
         import android.os.Bundle;
-        import android.support.v4.util.LruCache;
+        //import android.support.v4.util.LruCache;
         import android.util.Log;
+        import android.util.LruCache;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
@@ -214,7 +215,7 @@ public class Data extends Activity implements OnDismissCallback {
             if (pDialog.isShowing())
                 pDialog.dismiss();
 
-            mGoogleCardsAdapter.addAll(pListTag);
+            mGoogleCardsAdapter.addAll(pList);
         }
 
     }
@@ -230,7 +231,7 @@ public class Data extends Activity implements OnDismissCallback {
         }
     };
 
-    private static class GoogleCardsAdapter extends ArrayAdapter<Integer> {
+    private static class GoogleCardsAdapter extends ArrayAdapter<Place> {
 
         private final Context mContext;
         private final LruCache<Integer, Bitmap> mMemoryCache;
