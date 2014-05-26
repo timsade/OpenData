@@ -1,6 +1,8 @@
 package myapplication.app;
 
         import java.util.ArrayList;
+        import java.util.Collections;
+        import java.util.Comparator;
         import java.util.HashMap;
         import java.util.List;
         import java.util.StringTokenizer;
@@ -21,6 +23,7 @@ package myapplication.app;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.AbsListView;
+        import android.widget.AdapterView;
         import android.widget.ImageButton;
         import android.widget.ImageView;
         import android.widget.ListView;
@@ -57,17 +60,16 @@ public class Data extends Activity implements OnDismissCallback {
 
     ArrayList<Place> pList;
     LstPlaces lstPlaces;
-    ArrayList<Integer> pListTag;
+    ArrayList<Place> pListFar;
     private ProgressDialog pDialog;
 
     SharedPreferences preferences;
     SharedPreferences preferencesData;
     ImageButton btn_map;
 
-    Location gpsUser;
-    Location gpsPlace;
-
     HashMap<String, Integer> tagIdMap;
+
+    private static GPSTracker gps;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -77,25 +79,6 @@ public class Data extends Activity implements OnDismissCallback {
         preferences = getSharedPreferences("SXBN", MODE_PRIVATE);
         preferencesData = getSharedPreferences("SXBN_data", MODE_PRIVATE);
 
-        /* Juste pour les tests */
-        //SharedPreferences.Editor editor = preferences.edit();
-       // editor.putString("tags", "spectacle_parking");
-        //editor.commit();
-
-/*
-        Location locationA = new Location("point A");
-
-        locationA.setLatitude(latA);
-        locationA.setLongitude(lngA);
-
-        Location locationB = new Location("point B");
-
-        locationB.setLatitude(latB);
-        locationB.setLongitude(lngB);
-
-        float distance = locationA.distanceTo(locationB);
-*/
-
         if(preferences.getString("SXBN_exist", "").equals(""))
         {
             Intent intent = new Intent(Data.this, Questions.class);
@@ -104,6 +87,19 @@ public class Data extends Activity implements OnDismissCallback {
 
         fillTagIdMap();
         ListView listView = (ListView) findViewById(R.id.activity_googlecards_listview);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                // getting values from selected ListItem
+                String idP = ((TextView) view.findViewById(R.id.activity_googlecard_tv_idPlace)).getText().toString();
+                // Starting single contact activity
+                Intent in = new Intent(Data.this, PlaceDetails.class);
+                in.putExtra(TAG_ID, idP);
+                startActivity(in);
+            }
+        });
 
         btn_map = (ImageButton) findViewById(R.id.btn_map);
         btn_map.setOnClickListener(openmap);
@@ -115,6 +111,7 @@ public class Data extends Activity implements OnDismissCallback {
 
         listView.setAdapter(swingBottomInAnimationAdapter);
 
+        gps = new GPSTracker(this);
         new GetPlaces().execute();
     }
 
@@ -177,6 +174,7 @@ public class Data extends Activity implements OnDismissCallback {
             int tagTmp;
             ServiceHandler sh;
             pList = new ArrayList<Place>();
+            pListFar = new ArrayList<Place>();
             lstPlaces = new LstPlaces();
             // On parcours tous les tags et par chacun on intègre les lieux à la vue.
 
@@ -191,7 +189,6 @@ public class Data extends Activity implements OnDismissCallback {
                     sh = new ServiceHandler();
 
                     List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-
                     nvps.add(new BasicNameValuePair("tagId", String.valueOf(tagTmp)));
 
                     // Making a request to url and getting response
@@ -202,8 +199,6 @@ public class Data extends Activity implements OnDismissCallback {
                     if (jsonStr != null) {
                         try {
                             Place pTemp;
-                            pListTag = new ArrayList<Integer>();
-
 
                             JSONArray jsonArray = new JSONArray(jsonStr);
 
@@ -216,15 +211,28 @@ public class Data extends Activity implements OnDismissCallback {
                                 String desc = c.getString(TAG_DESC);
                                 String tag = c.getString(TAG_TAG);
                                 int tagId = Integer.valueOf(c.getString(TAG_TAG_ID));
-                                float gpsX = Float.valueOf(c.getString(TAG_GPSX));
-                                float gpsY = Float.valueOf(c.getString(TAG_GPSY));
+                                double gpsX = Double.valueOf(c.getString(TAG_GPSX));
+                                double gpsY = Double.valueOf(c.getString(TAG_GPSY));
                                 String address = c.getString(TAG_ADDR);
                                 String openings = c.getString(TAG_OPENINGS);
 
-                                pTemp = new Place(id, name, tag, tagId,  gpsX, gpsY, address, desc, openings);
-                                pList.add(pTemp);
+                                double distance = getDistance(gpsX, gpsY);
+
+                                pTemp = new Place(id, name, tag, tagId,  gpsX, gpsY, address, desc, openings, distance);
+                                if(distance < 3000)
+                                    pList.add(pTemp);
+                                else
+                                    pListFar.add(pTemp);
+
+                                Collections.sort(pList, new Comparator<Place>()
+                                {
+                                    public int compare(Place o1, Place o2)
+                                    {
+                                        return o1.compareTo(o2);
+                                    }
+                                });
+
                                 lstPlaces.addPlace(pTemp);
-                                pListTag.add(id);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -234,7 +242,6 @@ public class Data extends Activity implements OnDismissCallback {
                     }
                 }
             }
-
             return null;
         }
 
@@ -247,7 +254,13 @@ public class Data extends Activity implements OnDismissCallback {
 
             mGoogleCardsAdapter.addAll(pList);
         }
+    }
 
+    /* Retourne la distance entre l'utilisateur et les coordonnées passées en parametres*/
+    public static float getDistance(double x, double y){
+        float[] distances = new float[3];
+        Location.distanceBetween(gps.getLatitude(), gps.getLongitude(), x, y, distances);
+        return distances[0];
     }
 
     public View.OnClickListener openmap = new View.OnClickListener()
@@ -281,8 +294,10 @@ public class Data extends Activity implements OnDismissCallback {
         }
 
         public View getView(final int position, final View convertView, final ViewGroup parent) {
-            ViewHolder viewHolder;
+            Place p = getItem(position);
             View view = convertView;
+
+            ViewHolder viewHolder;
             if (view == null) {
                 view = LayoutInflater.from(mContext).inflate(R.layout.activity_googlecards_card, parent, false);
 
@@ -290,21 +305,32 @@ public class Data extends Activity implements OnDismissCallback {
                 viewHolder.tv_namePlace = (TextView) view.findViewById(R.id.activity_googlecard_namePlace);
                 viewHolder.tv_tagPlace = (TextView) view.findViewById(R.id.activity_googlecard_tagPlace);
                 viewHolder.tv_descPlace = (TextView) view.findViewById(R.id.activity_googlecard_descPlace);
+                viewHolder.tv_idPlace = (TextView) view.findViewById(R.id.activity_googlecard_tv_idPlace);
                 view.setTag(viewHolder);
 
                 viewHolder.imageTag = (ImageView) view.findViewById(R.id.activity_googlecards_imageTag);
             } else {
                 viewHolder = (ViewHolder) view.getTag();
             }
-            Place p = getItem(position);
+
 
             viewHolder.tv_namePlace.setText(p.getNamePlace());
-            viewHolder.tv_tagPlace.setText(p.getTagPlace());
+            //viewHolder.tv_tagPlace.setText(p.getTagPlace());
+            viewHolder.tv_tagPlace.setText(String.format("%.1f",p.getDistanceToUser()/1000)+" km");
             viewHolder.tv_descPlace.setText(p.getDescriptionPlace());
+            viewHolder.tv_idPlace.setText(String.valueOf(p.getIdPlace()));
 
-            //viewHolder.textView.setText("Id du lieux : " + (getItem(position) + 1));
             setImageView(viewHolder, p.getTagId());
+/*
+            view.setOnClickListener(new View.OnClickListener() {
 
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(Data.this, PlaceDetails.class);
+
+                }
+            });
+*/
             return view;
         }
 
@@ -377,11 +403,11 @@ public class Data extends Activity implements OnDismissCallback {
         }
 
         private static class ViewHolder {
-            TextView textView;
             ImageView imageTag;
             TextView tv_namePlace;
             TextView tv_tagPlace;
             TextView tv_descPlace;
+            TextView tv_idPlace;
         }
     }
 }
