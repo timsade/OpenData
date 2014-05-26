@@ -1,9 +1,8 @@
 <ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:id="@+id/viewFlipper"
+    android:id="@+id/viewQuestions"
     android:background="@drawable/backgr2">
-
 
 
     <RelativeLayout
@@ -11,13 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" A Strasbourg : "
-            android:id="@+id/tv_intro"
+            android:id="@+id/tv_q1"
             android:focusableInTouchMode="true"
             android:background="#9bbd15"
             android:textColor="#f0f0f0"
@@ -26,14 +23,15 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:textAlignment="center"
-            android:layout_marginTop="143dp"/>
-
+            android:layout_marginTop="50dp"/>
 
         <RadioGroup
-            android:id="@+id/radiog1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+            android:id="@+id/id_radiog1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tv_q1">
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -44,7 +42,7 @@
                 android:background="#9bbd15"
                 android:textColor="#f0f0f0"
                 android:width="150dp"
-                android:layout_marginTop="150dp"/>
+                android:layout_marginTop="50dp"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -71,6 +69,19 @@
 
         </RadioGroup>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Suivant >>"
+            android:id="@+id/id_btn_next1"
+            android:textSize="25dp"
+            android:background="#9bbd15"
+            android:textColor="#f0f0f0"
+            android:width="140dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -78,13 +89,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Bonjour Elsa, tu vas : "
-            android:id="@+id/tv_intro"
+            android:text="Vous avez : "
+            android:id="@+id/tv_q2"
             android:focusableInTouchMode="true"
             android:background="#9bbd15"
             android:textColor="#f0f0f0"
@@ -93,11 +102,11 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:textAlignment="center"
-            android:layout_marginTop="143dp"/>
+            android:layout_marginTop="50dp"/>
 
 
         <RadioGroup
-            android:id="@+id/radiog2"
+            android:id="@+id/id_radiog2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center">
@@ -105,31 +114,53 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bien !"
-                android:id="@+id/cb_bien"
+                android:text="moins de 18 ans"
+                android:id="@+id/cb_mineur"
                 android:textSize="25dp"
                 android:background="#9bbd15"
                 android:textColor="#f0f0f0"
-                android:width="150dp"
-                android:layout_marginTop="150dp"/>
+                android:width="250dp"
+                android:layout_marginTop="70dp"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Très bien !"
-                android:id="@+id/cb_tb"
+                android:text="entre 18 et 25 ans"
+                android:id="@+id/cb_jeune"
                 android:textSize="25dp"
                 android:background="#9bbd15"
                 android:textColor="#f0f0f0"
                 android:layout_marginTop="30dp"
-                android:width="150dp"/>
+                android:width="250dp"/>
 
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mieux que ça !"
-                android:id="@+id/cb_mieux"
+                android:text="entre 25 et 40 ans"
+                android:id="@+id/cb_adulte"
+                android:textSize="25dp"
+                android:background="#9bbd15"
+                android:textColor="#f0f0f0"
+                android:width="250dp"
+                android:layout_marginTop="30dp" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="entre 40 et 60 ans"
+                android:id="@+id/cb_adulteplus"
+                android:textSize="25dp"
+                android:background="#9bbd15"
+                android:textColor="#f0f0f0"
+                android:width="250dp"
+                android:layout_marginTop="30dp" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="60 ans et plus"
+                android:id="@+id/cb_senior"
                 android:textSize="25dp"
                 android:background="#9bbd15"
                 android:textColor="#f0f0f0"
@@ -137,6 +168,429 @@
                 android:layout_marginTop="30dp" />
 
         </RadioGroup>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Suivant >>"
+            android:id="@+id/id_btn_next2"
+            android:textSize="25dp"
+            android:background="#9bbd15"
+            android:textColor="#f0f0f0"
+            android:width="140dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/q3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" A Strasbourg, vous aimez : "
+            android:id="@+id/tv_q3"
+            android:focusableInTouchMode="true"
+            android:background="#9bbd15"
+            android:textColor="#f0f0f0"
+            android:textIsSelectable="false"
+            android:textSize="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:layout_marginTop="50dp"/>
+
+        <RadioGroup
+            android:id="@+id/id_radiog3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tv_q3">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vous promener"
+                android:id="@+id/cb_promene"
+                android:textSize="25dp"
+                android:background="#9bbd15"
+                android:textColor="#f0f0f0"
+                android:width="250dp"
+                android:layout_marginTop="50dp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vous détendre"
+                android:id="@+id/cb_detente"
+                android:textSize="25dp"
+                android:background="#9bbd15"
+                android:textColor="#f0f0f0"
+                android:layout_marginTop="30dp"
+                android:width="250dp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vous divertir"
+                android:id="@+id/cb_divert"
+                android:textSize="25dp"
+                android:background="#9bbd15"
+                android:textColor="#f0f0f0"
+                android:width="250dp"
+                android:layout_marginTop="30dp" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vous cultiver"
+                android:id="@+id/cb_culture"
+                android:textSize="25dp"
+                android:background="#9bbd15"
+                android:textColor="#f0f0f0"
+                android:width="250dp"
+                android:layout_marginTop="30dp" />
+
+        </RadioGroup>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Suivant >>"
+            android:id="@+id/id_btn_next3"
+            android:textSize="25dp"
+            android:background="#9bbd15"
+            android:textColor="#f0f0f0"
+            android:width="140dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/q4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Etes-vous sportif ? "
+            android:id="@+id/tv_q4"
+            android:focusableInTouchMode="true"
+            android:background="#9bbd15"
+            android:textColor="#f0f0f0"
+            android:textIsSelectable="false"
+            android:textSize="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:layout_marginTop="50dp"/>
+
+        <RadioGroup
+            android:id="@+id/id_radiog4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tv_q4">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Oui"
+                android:id="@+id/cb_sportoui"
+                android:textSize="25dp"
+                android:background="#9bbd15"
+                android:textColor="#f0f0f0"
+                android:width="120dp"
+                android:layout_marginTop="70dp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Non"
+                android:id="@+id/cb_sportnon"
+                android:textSize="25dp"
+                android:background="#9bbd15"
+                android:textColor="#f0f0f0"
+                android:layout_marginTop="30dp"
+                android:width="120dp"/>
+
+        </RadioGroup>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Suivant >>"
+            android:id="@+id/id_btn_next4"
+            android:textSize="25dp"
+            android:background="#9bbd15"
+            android:textColor="#f0f0f0"
+            android:width="140dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/q5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Avez-vous des enfants ?"
+            android:id="@+id/tv_q5"
+            android:focusableInTouchMode="true"
+            android:background="#9bbd15"
+            android:textColor="#f0f0f0"
+            android:textIsSelectable="false"
+            android:textSize="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:layout_marginTop="50dp"
+            android:width="300dp"/>
+
+        <RadioGroup
+            android:id="@+id/id_radiog5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tv_q5">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Oui"
+                android:id="@+id/cb_enfoui"
+                android:textSize="25dp"
+                android:background="#9bbd15"
+                android:textColor="#f0f0f0"
+                android:width="120dp"
+                android:layout_marginTop="70dp"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Non"
+                android:id="@+id/cb_enfnon"
+                android:textSize="25dp"
+                android:background="#9bbd15"
+                android:textColor="#f0f0f0"
+                android:layout_marginTop="30dp"
+                android:width="120dp"/>
+
+        </RadioGroup>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valider"
+            android:id="@+id/id_btn_valid"
+            android:textSize="25dp"
+            android:background="#9bbd15"
+            android:textColor="#f0f0f0"
+            android:width="140dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rep"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/id_choix"
+            android:focusableInTouchMode="true"
+            android:background="#9bbd15"
+            android:textColor="#f0f0f0"
+            android:textIsSelectable="false"
+            android:textSize="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:layout_marginTop="10dp"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spectacle"
+            android:id="@+id/id_spectacle"
+            android:layout_below="@+id/id_choix"
+            android:layout_marginTop="25dp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Offices de tourisme"
+            android:id="@+id/id_offtour"
+            android:layout_below="@+id/id_choix"
+            android:layout_marginTop="50dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Promenades"
+            android:id="@+id/id_promenade"
+            android:layout_below="@+id/id_choix"
+            android:layout_marginTop="75dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Espaces verts"
+            android:id="@+id/id_vert"
+            android:layout_below="@+id/id_choix"
+            android:layout_marginTop="100dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fontaines"
+            android:id="@+id/id_fontaine"
+            android:layout_below="@+id/id_choix"
+            android:layout_marginTop="125dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Etablissements divers et pratique"
+            android:id="@+id/id_pratique"
+            android:layout_below="@+id/id_choix"
+            android:layout_marginTop="150dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lieux cultes"
+            android:id="@+id/id_culte"
+            android:layout_below="@+id/id_choix"
+            android:layout_marginTop="175dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Equipements sportifs"
+            android:id="@+id/id_equipsportif"
+            android:layout_below="@+id/id_choix"
+            android:layout_marginTop="200dp" />
+
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aires de jeux"
+            android:id="@+id/id_airejeux"
+            android:layout_below="@+id/id_choix"
+            android:layout_marginTop="225dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Parkings"
+            android:id="@+id/id_parking"
+            android:layout_below="@+id/id_choix"
+            android:layout_marginTop="250dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stations Auto'trement"
+            android:id="@+id/id_autotrement"
+            android:layout_below="@+id/id_choix"
+            android:layout_marginTop="275dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stations Vel'hop"
+            android:id="@+id/id_velhop"
+            android:layout_below="@+id/id_choix"
+            android:layout_marginTop="300dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Points d'eau potable"
+            android:id="@+id/id_eau"
+            android:layout_below="@+id/id_choix"
+            android:layout_marginTop="325dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Toilettes publiques"
+            android:id="@+id/id_toilette"
+            android:layout_below="@+id/id_choix"
+            android:layout_marginTop="350dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirmer"
+            android:id="@+id/id_btn_confirm"
+            android:textSize="25dp"
+            android:background="#9bbd15"
+            android:textColor="#f0f0f0"
+            android:width="140dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/r_affichage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Affichage résultat : "
+        android:id="@+id/id_affichage"
+        android:focusableInTouchMode="true"
+        android:background="#9bbd15"
+        android:textColor="#f0f0f0"
+        android:textIsSelectable="false"
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"/>
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/id_choix2"
+        android:focusableInTouchMode="true"
+        android:background="#9bbd15"
+        android:textColor="#f0f0f0"
+        android:textIsSelectable="false"
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:layout_marginTop="50dp"/>
 
     </RelativeLayout>
 
