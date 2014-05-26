@@ -1,6 +1,8 @@
 package myapplication.app;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,8 +21,7 @@ import java.util.Map;
 public class Questions extends Activity {
 
     ViewFlipper viewQuestions;
-    ViewFlipper viewReponses;
-    //ViewFlipper viewAffichage;
+
     RadioGroup radioGroup;
     String rt1 = "";
     String rt2 = "";
@@ -35,12 +36,18 @@ public class Questions extends Activity {
     boolean spectacle = false;
     boolean equipsportif = false;
     boolean culte = false;
-    boolean eau = true;
-    boolean toilette = true;
     boolean promenade = false;
     boolean vert = false;
     boolean airejeux = false;
     boolean fontaine = false;
+
+    RadioGroup rg1;
+    RadioGroup rg2;
+    RadioGroup rg3;
+    RadioGroup rg4;
+    RadioGroup rg5;
+
+   AlertDialog.Builder msgError = new AlertDialog.Builder(this);
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -57,23 +64,23 @@ public class Questions extends Activity {
         viewQuestions = (ViewFlipper) findViewById(R.id.viewQuestions);
 
         // Initialisation des valeurs pour la question 1
-        RadioGroup rg1 = (RadioGroup) findViewById(R.id.id_radiog1);
+        rg1 = (RadioGroup) findViewById(R.id.id_radiog1);
         Button btn_next1 = (Button) findViewById(R.id.id_btn_next1);
 
         // Initialisation des valeurs pour la question 2
-        RadioGroup rg2 = (RadioGroup) findViewById(R.id.id_radiog2);
+        rg2 = (RadioGroup) findViewById(R.id.id_radiog2);
         Button btn_next2 = (Button) findViewById(R.id.id_btn_next2);
 
         // Initialisation des valeurs pour la question 3
-        RadioGroup rg3 = (RadioGroup) findViewById(R.id.id_radiog3);
+        rg3 = (RadioGroup) findViewById(R.id.id_radiog3);
         Button btn_next3 = (Button) findViewById(R.id.id_btn_next3);
 
         // Initialisation des valeurs pour la question 4
-        RadioGroup rg4 = (RadioGroup) findViewById(R.id.id_radiog4);
+        rg4 = (RadioGroup) findViewById(R.id.id_radiog4);
         Button btn_next4 = (Button) findViewById(R.id.id_btn_next4);
 
         // Initialisation des valeurs pour la question 5
-        RadioGroup rg5 = (RadioGroup) findViewById(R.id.id_radiog5);
+        rg5 = (RadioGroup) findViewById(R.id.id_radiog5);
         Button btn_valid = (Button) findViewById(R.id.id_btn_valid);
         Button btn_confirm = (Button) findViewById(R.id.id_btn_confirm);
 
@@ -84,32 +91,147 @@ public class Questions extends Activity {
         chaine_choix = getSharedPreferences("SXBN_data", MODE_PRIVATE);
         editor_choix = chaine_choix.edit();
 
+        // Message d'erreur si radio button selected
+        msgError.setTitle("Message d'erreur");
+        msgError.setMessage("Vous n'avez pas répondu");
+        msgError.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+
         // Actions
         btn_next1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                viewQuestions.showNext();
+                //Teste si le bonhomme a répondu à la question, si oui passage au view next
+                if (!rg1.isActivated()) {
+                    msgError.show();
+                } else {
+                    viewQuestions.showNext();
+                }
             }
         });
         btn_next2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                viewQuestions.showNext();
+                //Teste si le bonhomme a répondu à la question, si oui passage au view next
+                if (!rg2.isActivated()) {
+                    msgError.show();
+                } else {
+                    viewQuestions.showNext();
+                }
             }
         });
         btn_next3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                viewQuestions.showNext();
+                //Teste si le bonhomme a répondu à la question, si oui passage au view next
+                if (!rg3.isActivated()) {
+                    msgError.show();
+                } else {
+                    viewQuestions.showNext();
+                }
             }
         });
         btn_next4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                viewQuestions.showNext();
+                //Teste si le bonhomme a répondu à la question, si oui passage au view next
+                if (!rg4.isActivated()) {
+                    msgError.show();
+                } else {
+                    viewQuestions.showNext();
+                }
             }
         });
 
+        //Traitement des réponses (1er passage)
+        btn_valid.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                //Teste si le bonhomme a répondu à la question, si oui passage au view next
+                if (!rg5.isActivated()) {
+                    msgError.show();
+                } else {
+                    viewQuestions.showNext();
+                    viewQuestions.setBackgroundColor(0xf0f0f0);
+
+                    CheckBox cb_offtour = (CheckBox) findViewById(R.id.id_offtour);
+                    CheckBox cb_spectacle = (CheckBox) findViewById(R.id.id_spectacle);
+                    CheckBox cb_promenade = (CheckBox) findViewById(R.id.id_promenade);
+                    CheckBox cb_vert = (CheckBox) findViewById(R.id.id_vert);
+                    CheckBox cb_equipsportif = (CheckBox) findViewById(R.id.id_equipsportif);
+                    CheckBox cb_fontaine = (CheckBox) findViewById(R.id.id_fontaine);
+                    CheckBox cb_airejeux = (CheckBox) findViewById(R.id.id_airejeux);
+                    CheckBox cb_culte = (CheckBox) findViewById(R.id.id_culte);
+                    CheckBox cb_eau = (CheckBox) findViewById(R.id.id_eau);
+                    CheckBox cb_toilette = (CheckBox) findViewById(R.id.id_toilette);
+                    CheckBox cb_velhop = (CheckBox) findViewById(R.id.id_velhop);
+                    CheckBox cb_autotrement = (CheckBox) findViewById(R.id.id_autotrement);
+                    CheckBox cb_parking = (CheckBox) findViewById(R.id.id_parking);
+                    CheckBox cb_pratique = (CheckBox) findViewById(R.id.id_pratique);
+
+                    //Affichage de la chaîne de choix
+                    String choix = "toilette_eau";
+
+                    if (offtour) {
+                        choix = choix.concat("_offtour");
+                        cb_offtour.setChecked(true);
+                    };
+                    if (pratique) {
+                        choix = choix.concat("_pratique");
+                        cb_pratique.setChecked(true);
+                    };
+                    if (promenade) {
+                        choix = choix.concat("_promenade");
+                        cb_promenade.setChecked(true);
+                    };
+                    if (vert) {
+                        choix = choix.concat("_vert");
+                        cb_vert.setChecked(true);
+                    };
+                    if (airejeux) {
+                        choix = choix.concat("_airejeux");
+                        cb_airejeux.setChecked(true);
+                    };
+                    if (equipsportif) {
+                        choix = choix.concat("_equipsportif");
+                        cb_equipsportif.setChecked(true);
+                    };
+                    if (autotrement) {
+                        choix = choix.concat("_autotrement");
+                        cb_autotrement.setChecked(true);
+                    };
+                    if (velhop) {
+                        choix = choix.concat("_velhop");
+                        cb_velhop.setChecked(true);
+                    };
+                    if (parking) {
+                        choix = choix.concat("_parking");
+                        cb_parking.setChecked(true);
+                    };
+                    if (culte) {
+                        choix = choix.concat("_culte");
+                        cb_culte.setChecked(true);
+                    };
+                    if (fontaine) {
+                        choix = choix.concat("_fontaine");
+                        cb_fontaine.setChecked(true);
+                    };
+                    if (spectacle) {
+                        choix = choix.concat("_spectacle");
+                        cb_spectacle.setChecked(true);
+                    };
+
+                    cb_toilette.setChecked(true);
+                    cb_eau.setChecked(true);
+
+                    //Enregistrement de la chaîne dans un SharedPreference
+                    editor_choix.putString("tag", choix);
+                    editor_choix.commit();
+                }
+            }
+        });
+
+        // Traitement des réponses après confirmation du formulaire (2ème passage)
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-
-                //viewQuestions.showNext();
 
                 CheckBox cb_offtour = (CheckBox) findViewById(R.id.id_offtour);
                 CheckBox cb_spectacle = (CheckBox) findViewById(R.id.id_spectacle);
@@ -178,99 +300,8 @@ public class Questions extends Activity {
                 editor_choix.commit();
                 editor.commit();
 
-//                TextView tv_choix2 = (TextView) findViewById(R.id.id_choix2);
-//                String res_choix2 = chaine_choix.getString("tag", "");
-//                tv_choix2.setText(res_choix2);
                 Intent intent = new Intent(Questions.this, Data.class);
                 startActivity(intent);
-            }
-        });
-
-        //Validation des questions et enregistrement du profil
-        btn_valid.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                //setContentView(R.layout.reponse);
-                //viewReponses = (ViewFlipper) findViewById(R.id.viewReponses);
-                viewQuestions.showNext();
-                viewQuestions.setBackgroundColor(0xf0f0f0);
-
-                CheckBox cb_offtour = (CheckBox) findViewById(R.id.id_offtour);
-                CheckBox cb_spectacle = (CheckBox) findViewById(R.id.id_spectacle);
-                CheckBox cb_promenade = (CheckBox) findViewById(R.id.id_promenade);
-                CheckBox cb_vert = (CheckBox) findViewById(R.id.id_vert);
-                CheckBox cb_equipsportif = (CheckBox) findViewById(R.id.id_equipsportif);
-                CheckBox cb_fontaine = (CheckBox) findViewById(R.id.id_fontaine);
-                CheckBox cb_airejeux = (CheckBox) findViewById(R.id.id_airejeux);
-                CheckBox cb_culte = (CheckBox) findViewById(R.id.id_culte);
-                CheckBox cb_eau = (CheckBox) findViewById(R.id.id_eau);
-                CheckBox cb_toilette = (CheckBox) findViewById(R.id.id_toilette);
-                CheckBox cb_velhop = (CheckBox) findViewById(R.id.id_velhop);
-                CheckBox cb_autotrement = (CheckBox) findViewById(R.id.id_autotrement);
-                CheckBox cb_parking = (CheckBox) findViewById(R.id.id_parking);
-                CheckBox cb_pratique = (CheckBox) findViewById(R.id.id_pratique);
-
-                //Affichage de la chaîne de choix
-                String choix = "toilette_eau";
-
-                if (offtour) {
-                    choix = choix.concat("_offtour");
-                    cb_offtour.setChecked(true);
-                };
-                if (pratique) {
-                    choix = choix.concat("_pratique");
-                    cb_pratique.setChecked(true);
-                };
-                if (promenade) {
-                    choix = choix.concat("_promenade");
-                    cb_promenade.setChecked(true);
-                };
-                if (vert) {
-                    choix = choix.concat("_vert");
-                    cb_vert.setChecked(true);
-                };
-                if (airejeux) {
-                    choix = choix.concat("_airejeux");
-                    cb_airejeux.setChecked(true);
-                };
-                if (equipsportif) {
-                    choix = choix.concat("_equipsportif");
-                    cb_equipsportif.setChecked(true);
-                };
-                if (autotrement) {
-                    choix = choix.concat("_autotrement");
-                    cb_autotrement.setChecked(true);
-                };
-                if (velhop) {
-                    choix = choix.concat("_velhop");
-                    cb_velhop.setChecked(true);
-                };
-                if (parking) {
-                    choix = choix.concat("_parking");
-                    cb_parking.setChecked(true);
-                };
-                if (culte) {
-                    choix = choix.concat("_culte");
-                    cb_culte.setChecked(true);
-                };
-                if (fontaine) {
-                    choix = choix.concat("_fontaine");
-                    cb_fontaine.setChecked(true);
-                };
-                if (spectacle) {
-                    choix = choix.concat("_spectacle");
-                    cb_spectacle.setChecked(true);
-                };
-
-                cb_toilette.setChecked(true);
-                cb_eau.setChecked(true);
-
-                //Enregistrement de la chaîne dans un SharedPreference
-                editor_choix.putString("tag", choix);
-                editor_choix.commit();
-
-                TextView tv_choix = (TextView) findViewById(R.id.id_choix);
-                String res_choix = chaine_choix.getString("tag", "");
-                tv_choix.setText(res_choix);
             }
         });
 
@@ -432,7 +463,6 @@ public class Questions extends Activity {
                 editor.commit();
             }
         });
-        // editor.putString("SXBN_exist", "yes"); -> A mettre tout à la fin quand les test sont finis pour ne plus avoir à refaire les questions
     }
 
 };
