@@ -15,7 +15,6 @@ package myapplication.app;
         import android.location.Location;
         import android.os.AsyncTask;
         import android.os.Bundle;
-        //import android.support.v4.util.LruCache;
         import android.util.Log;
         import android.util.LruCache;
         import android.view.LayoutInflater;
