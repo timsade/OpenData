@@ -7,6 +7,10 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
 
 public class MyMapActivity extends Activity {
 
@@ -31,17 +35,23 @@ public class MyMapActivity extends Activity {
                 googleMap = ((MapFragment) getFragmentManager().findFragmentById(
                         R.id.mapView)).getMap();
 
-                /**
-                 * If the map is still null after attempted initialisation,
-                 * show an error to the user
-                 */
                 if(null == googleMap) {
                     Toast.makeText(getApplicationContext(),
                             "Error creating map", Toast.LENGTH_SHORT).show();
                 }
             }
+
         } catch (NullPointerException exception){
             Log.e("mapApp", exception.toString());
         }
+
+        ArrayList<Place> temp = LstPlaces.getLstPlaces();
+        for(Place p : temp)
+        {
+            googleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(p.getGpsXPlace(), p.getGpsYPlace()))
+                    .title(p.getNamePlace()));
+        }
+
     }
 }

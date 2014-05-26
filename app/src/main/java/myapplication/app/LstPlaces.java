@@ -9,13 +9,13 @@ import java.util.Iterator;
  */
 public class LstPlaces {
 
-    private ArrayList<Place> lstPlaces;
+    private static ArrayList<Place> lstPlaces;
 
     public LstPlaces(){
         lstPlaces = new ArrayList<Place>();
     }
 
-    public ArrayList<Place> getLstPlaces(){ return this.lstPlaces; }
+    public static ArrayList<Place> getLstPlaces(){ return lstPlaces; }
 
     public void addPlace(Place p){ this.lstPlaces.add(p); }
 
