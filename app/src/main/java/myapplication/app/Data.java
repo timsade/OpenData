@@ -61,6 +61,7 @@ public class Data extends Activity implements OnDismissCallback {
     private ProgressDialog pDialog;
 
     SharedPreferences preferences;
+    SharedPreferences preferencesData;
     ImageButton btn_map;
 
     Location gpsUser;
@@ -74,11 +75,12 @@ public class Data extends Activity implements OnDismissCallback {
         setContentView(R.layout.activity_googlecards);
 
         preferences = getSharedPreferences("SXBN", MODE_PRIVATE);
+        preferencesData = getSharedPreferences("SXBN_data", MODE_PRIVATE);
 
         /* Juste pour les tests */
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("tags", "spectacle_parking");
-        editor.commit();
+        //SharedPreferences.Editor editor = preferences.edit();
+       // editor.putString("tags", "spectacle_parking");
+        //editor.commit();
 
 /*
         Location locationA = new Location("point A");
@@ -93,7 +95,7 @@ public class Data extends Activity implements OnDismissCallback {
 
         float distance = locationA.distanceTo(locationB);
 */
-        if(!preferences.getString("SXBN_exist", "").equals(""))
+        if(preferences.getString("SXBN_exist", "").equals(""))
         {
             Intent intent = new Intent(Data.this, Questions.class);
             startActivity(intent);
@@ -167,10 +169,9 @@ public class Data extends Activity implements OnDismissCallback {
         @Override
         protected Void doInBackground(Void... arg0) {
 
-            String data = preferences.getString("tags","");
-            data = data+"_offtour_pratique_toilette_eau";
+            String data = preferencesData.getString("tag","");
+            Log.d("Tokens > ",data);
             StringTokenizer tokensTag = new StringTokenizer(data, "_"); // Parse les tags contenus dans les préférences
-
 
             int tagTmp;
             ServiceHandler sh;
@@ -179,53 +180,57 @@ public class Data extends Activity implements OnDismissCallback {
             // On parcours tous les tags et par chacun on intègre les lieux à la vue.
 
             while(tokensTag.hasMoreTokens()){
-                tagTmp = tagIdMap.get(tokensTag.nextToken());
-                Log.d("Token: ", "> " + tagTmp);
+                String tmpTok = tokensTag.nextToken();
+                if(!tmpTok.equals("data")){
+                    tagTmp = tagIdMap.get(tmpTok);
 
-                // Creating service handler class instance
-                sh = new ServiceHandler();
+                    Log.d("Token: ", "> " + tagTmp);
 
-                List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+                    // Creating service handler class instance
+                    sh = new ServiceHandler();
 
-                nvps.add(new BasicNameValuePair("tagId", String.valueOf(tagTmp)));
+                    List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 
-                // Making a request to url and getting response
-                String jsonStr = sh.makeServiceCall(GET_PLACES_URL, ServiceHandler.POST, nvps);
+                    nvps.add(new BasicNameValuePair("tagId", String.valueOf(tagTmp)));
 
-                Log.d("Response: ", "> " + jsonStr);
+                    // Making a request to url and getting response
+                    String jsonStr = sh.makeServiceCall(GET_PLACES_URL, ServiceHandler.POST, nvps);
 
-                if (jsonStr != null) {
-                    try {
-                        Place pTemp;
-                        pListTag = new ArrayList<Integer>();
+                    Log.d("Response: ", "> " + jsonStr);
+
+                    if (jsonStr != null) {
+                        try {
+                            Place pTemp;
+                            pListTag = new ArrayList<Integer>();
 
 
-                        JSONArray jsonArray = new JSONArray(jsonStr);
+                            JSONArray jsonArray = new JSONArray(jsonStr);
 
-                        // looping through All Contacts
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            JSONObject c = jsonArray.getJSONObject(i);
+                            // looping through All Contacts
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject c = jsonArray.getJSONObject(i);
 
-                            int id = Integer.valueOf(c.getString(TAG_ID));
-                            String name = c.getString(TAG_NAME);
-                            String desc = c.getString(TAG_DESC);
-                            String tag = c.getString(TAG_TAG);
-                            int tagId = Integer.valueOf(c.getString(TAG_TAG_ID));
-                            float gpsX = Float.valueOf(c.getString(TAG_GPSX));
-                            float gpsY = Float.valueOf(c.getString(TAG_GPSY));
-                            String address = c.getString(TAG_ADDR);
-                            String openings = c.getString(TAG_OPENINGS);
+                                int id = Integer.valueOf(c.getString(TAG_ID));
+                                String name = c.getString(TAG_NAME);
+                                String desc = c.getString(TAG_DESC);
+                                String tag = c.getString(TAG_TAG);
+                                int tagId = Integer.valueOf(c.getString(TAG_TAG_ID));
+                                float gpsX = Float.valueOf(c.getString(TAG_GPSX));
+                                float gpsY = Float.valueOf(c.getString(TAG_GPSY));
+                                String address = c.getString(TAG_ADDR);
+                                String openings = c.getString(TAG_OPENINGS);
 
-                            pTemp = new Place(id, name, tag, tagId,  gpsX, gpsY, address, desc, openings);
-                            pList.add(pTemp);
-                            lstPlaces.addPlace(pTemp);
-                            pListTag.add(id);
+                                pTemp = new Place(id, name, tag, tagId,  gpsX, gpsY, address, desc, openings);
+                                pList.add(pTemp);
+                                lstPlaces.addPlace(pTemp);
+                                pListTag.add(id);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    } else {
+                        Log.e("ServiceHandler", "Couldn't get any data from the url");
                     }
-                } else {
-                    Log.e("ServiceHandler", "Couldn't get any data from the url");
                 }
             }
 
