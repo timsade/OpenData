@@ -77,7 +77,7 @@ public class Data extends Activity implements OnDismissCallback {
 
         /* Juste pour les tests */
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("tags", "spectacle_pratique_parking");
+        editor.putString("tags", "spectacle_parking");
         editor.commit();
 
 /*
@@ -168,7 +168,9 @@ public class Data extends Activity implements OnDismissCallback {
         protected Void doInBackground(Void... arg0) {
 
             String data = preferences.getString("tags","");
+            data = data+"_offtour_pratique_toilette";
             StringTokenizer tokensTag = new StringTokenizer(data, "_"); // Parse les tags contenus dans les préférences
+
 
             int tagTmp;
             ServiceHandler sh;
