@@ -12,6 +12,7 @@ package myapplication.app;
         import android.content.SharedPreferences;
         import android.graphics.Bitmap;
         import android.graphics.BitmapFactory;
+        import android.location.Location;
         import android.os.AsyncTask;
         import android.os.Bundle;
         //import android.support.v4.util.LruCache;
@@ -50,6 +51,10 @@ public class Data extends Activity implements OnDismissCallback {
     private static final String TAG_GPSY = "gpsy_place";
     private static final String TAG_ADDR = "address_place";
     private static final String TAG_OPENINGS = "openings_place";
+    private static final String TAG_TAG_ID = "parent_tag_place";
+
+    private static final int IMG_WIDTH = 120;
+    private static final int IMG_HEIGHT = 120;
 
     ArrayList<Place> pList;
     LstPlaces lstPlaces;
@@ -59,6 +64,8 @@ public class Data extends Activity implements OnDismissCallback {
     SharedPreferences preferences;
     ImageButton btn_map;
 
+    Location gpsUser;
+    Location gpsPlace;
 
     HashMap<String, Integer> tagIdMap;
 
@@ -68,10 +75,25 @@ public class Data extends Activity implements OnDismissCallback {
         setContentView(R.layout.activity_googlecards);
 
         preferences = getSharedPreferences("SXBN", MODE_PRIVATE);
+
+        /* Juste pour les tests */
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("tags", "spectacle_pratique_parking");
         editor.commit();
 
+/*
+        Location locationA = new Location("point A");
+
+        locationA.setLatitude(latA);
+        locationA.setLongitude(lngA);
+
+        Location locationB = new Location("point B");
+
+        locationB.setLatitude(latB);
+        locationB.setLongitude(lngB);
+
+        float distance = locationA.distanceTo(locationB);
+*/
         if(!preferences.getString("SXBN_exist", "").equals(""))
         {
             Intent intent = new Intent(Data.this, Questions.class);
@@ -187,12 +209,13 @@ public class Data extends Activity implements OnDismissCallback {
                             String name = c.getString(TAG_NAME);
                             String desc = c.getString(TAG_DESC);
                             String tag = c.getString(TAG_TAG);
+                            int tagId = Integer.valueOf(c.getString(TAG_TAG_ID));
                             float gpsX = Float.valueOf(c.getString(TAG_GPSX));
                             float gpsY = Float.valueOf(c.getString(TAG_GPSY));
                             String address = c.getString(TAG_ADDR);
                             String openings = c.getString(TAG_OPENINGS);
 
-                            pTemp = new Place(id, name, tag, gpsX, gpsY, address, desc, openings);
+                            pTemp = new Place(id, name, tag, tagId,  gpsX, gpsY, address, desc, openings);
                             pList.add(pTemp);
                             lstPlaces.addPlace(pTemp);
                             pListTag.add(id);
@@ -262,7 +285,7 @@ public class Data extends Activity implements OnDismissCallback {
                 viewHolder.tv_descPlace = (TextView) view.findViewById(R.id.activity_googlecard_descPlace);
                 view.setTag(viewHolder);
 
-                //viewHolder.imageView = (ImageView) view.findViewById(R.id.activity_googlecards_card_imageview);
+                viewHolder.imageTag = (ImageView) view.findViewById(R.id.activity_googlecards_imageTag);
             } else {
                 viewHolder = (ViewHolder) view.getTag();
             }
@@ -273,38 +296,69 @@ public class Data extends Activity implements OnDismissCallback {
             viewHolder.tv_descPlace.setText(p.getDescriptionPlace());
 
             //viewHolder.textView.setText("Id du lieux : " + (getItem(position) + 1));
-            //setImageView(viewHolder, position);
+            setImageView(viewHolder, p.getTagId());
 
             return view;
         }
-/*
-        private void setImageView(final ViewHolder viewHolder, final int position) {
+
+        private void setImageView(final ViewHolder viewHolder, final int tag) {
             int imageResId;
-            switch (getItem(position) % 5) {
-                case 0:
-                    imageResId = R.drawable.img_nature1;
-                    break;
+            switch (tag) {
                 case 1:
-                    imageResId = R.drawable.img_nature2;
+                    imageResId = R.drawable.img_spectacle;
                     break;
                 case 2:
-                    imageResId = R.drawable.img_nature3;
+                    imageResId = R.drawable.img_equsport;
                     break;
                 case 3:
-                    imageResId = R.drawable.img_nature4;
+                    imageResId = R.drawable.img_offtour;
+                    break;
+                case 4:
+                    imageResId = R.drawable.img_culte;
+                    break;
+                case 5:
+                    imageResId = R.drawable.img_parking;
+                    break;
+                case 6:
+                    imageResId = R.drawable.img_autotrement;
+                    break;
+                case 7:
+                    imageResId = R.drawable.img_velhop;
+                    break;
+                case 8:
+                    imageResId = R.drawable.img_pteau;
+                    break;
+                case 9:
+                    imageResId = R.drawable.img_toilette;
+                    break;
+                case 10:
+                    imageResId = R.drawable.img_pratique;
+                    break;
+                case 11:
+                    imageResId = R.drawable.img_promenade;
+                    break;
+                case 12:
+                    imageResId = R.drawable.img_verts;
+                    break;
+                case 13:
+                    imageResId = R.drawable.img_jeux;
+                    break;
+                case 14:
+                    imageResId = R.drawable.img_fontaine;
                     break;
                 default:
-                    imageResId = R.drawable.img_nature5;
+                    imageResId = R.drawable.img_default;
             }
 
             Bitmap bitmap = getBitmapFromMemCache(imageResId);
             if (bitmap == null) {
                 bitmap = BitmapFactory.decodeResource(mContext.getResources(), imageResId);
+                bitmap = Bitmap.createScaledBitmap(bitmap, IMG_WIDTH, IMG_HEIGHT, true);
                 addBitmapToMemoryCache(imageResId, bitmap);
             }
-            viewHolder.imageView.setImageBitmap(bitmap);
+            viewHolder.imageTag.setImageBitmap(bitmap);
         }
-*/
+
         private void addBitmapToMemoryCache(final int key, final Bitmap bitmap) {
             if (getBitmapFromMemCache(key) == null) {
                 mMemoryCache.put(key, bitmap);
@@ -317,7 +371,7 @@ public class Data extends Activity implements OnDismissCallback {
 
         private static class ViewHolder {
             TextView textView;
-            ImageView imageView;
+            ImageView imageTag;
             TextView tv_namePlace;
             TextView tv_tagPlace;
             TextView tv_descPlace;
