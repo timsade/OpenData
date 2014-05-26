@@ -3,17 +3,18 @@ package myapplication.app;
 /**
  * Created by Eleonore on 21/05/14.
  */
-public class Place {
+public class Place{
 
     private int idPlace;
     private String namePlace;
     private String tagPlace;
     private int tagId;
-    private float gpsXPlace;
-    private float gpsYPlace;
+    private double gpsXPlace;
+    private double gpsYPlace;
     private String addressPlace;
     private String descriptionPlace;
     private String openingsPlace;
+    private double distanceToUser;
 
     public Place(){
         this.idPlace = 0;
@@ -25,9 +26,11 @@ public class Place {
         this.addressPlace = "";
         this.descriptionPlace = "";
         this.openingsPlace = "";
+        this.distanceToUser = 0;
+
     }
 
-    public Place(int id, String name, String tag, int tagid, float gpsX, float gpsY, String address, String description, String openings){
+    public Place(int id, String name, String tag, int tagid, double gpsX, double gpsY, String address, String description, String openings, double distance){
         this.idPlace = id;
         this.namePlace = name;
         this.tagPlace = tag;
@@ -37,14 +40,27 @@ public class Place {
         this.addressPlace = address;
         this.descriptionPlace = description;
         this.openingsPlace = openings;
+        this.distanceToUser = distance;
     }
 
     public int getIdPlace(){ return this.idPlace ; }
     public String getNamePlace(){ return this.namePlace ; }
     public String getTagPlace(){ return this.tagPlace; }
     public int getTagId(){ return this.tagId; }
-    public float getGpsXPlace(){ return this.gpsXPlace ; }
-    public float getGpsYPlace(){ return this.gpsYPlace ; }
+    public double getGpsXPlace(){ return this.gpsXPlace ; }
+    public double getGpsYPlace(){ return this.gpsYPlace ; }
     public String getDescriptionPlace(){ return this.descriptionPlace; }
+    public double getDistanceToUser(){ return this.distanceToUser; }
 
+    public int compareTo(Place p2)
+    {
+        int resultat = 0;
+        if (this.distanceToUser > p2.getDistanceToUser())
+            resultat = 1;
+        if (this.distanceToUser < p2.getDistanceToUser())
+            resultat = -1;
+        if (this.distanceToUser == p2.getDistanceToUser())
+            resultat = 0;
+        return resultat;
+    }
 }
