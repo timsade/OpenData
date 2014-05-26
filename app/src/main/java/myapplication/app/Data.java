@@ -168,7 +168,7 @@ public class Data extends Activity implements OnDismissCallback {
         protected Void doInBackground(Void... arg0) {
 
             String data = preferences.getString("tags","");
-            data = data+"_offtour_pratique_toilette";
+            data = data+"_offtour_pratique_toilette_eau";
             StringTokenizer tokensTag = new StringTokenizer(data, "_"); // Parse les tags contenus dans les préférences
 
 
