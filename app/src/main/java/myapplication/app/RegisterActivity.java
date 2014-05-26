@@ -50,7 +50,7 @@ public class RegisterActivity extends Activity
     /* Définit le nom de l'Activity */
         /********************************/
 
-        setTitle("Register new account");
+        setTitle("Enregistrer nouveau compte");
 
         /**********************************************************/
     /* Importation des caractéristiques des champs et boutons */
@@ -168,7 +168,7 @@ public class RegisterActivity extends Activity
                                         if(Integer.parseInt(res) == 1)
                                         {
 
-                                            Toast.makeText(getApplicationContext(), "Success Registred", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(), "Utilisateur inscrit !", Toast.LENGTH_SHORT).show();
 
                                             /***************************************/
                                              /* Lancement de l'Activity "DashBoard" */
@@ -211,10 +211,10 @@ public class RegisterActivity extends Activity
                         t.start();
                     }
                     else
-                        Toast.makeText(getApplicationContext(), "Invalid email !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Adresse mail incorrecte", Toast.LENGTH_SHORT).show();
                 }
                 else
-                    Toast.makeText(getApplicationContext(), "Password too short (&lt;8) !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Le mot de passe doit faire au moins 8 caractère", Toast.LENGTH_SHORT).show();
             }
         });
 

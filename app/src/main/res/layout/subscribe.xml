@@ -27,7 +27,7 @@
             android:layout_below="@+id/tv_inscription"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="78dp"
-            android:hint="Username"
+            android:hint="Nom d'utilisateur"
             android:textColorHint="#737373"
             android:textColor="#2e332c" />
 
@@ -53,7 +53,7 @@
             android:layout_alignLeft="@+id/et_mail"
             android:layout_alignStart="@+id/et_mail"
             android:layout_marginTop="46dp"
-            android:hint="Password"
+            android:hint="Mot de passe"
             android:textColorHint="#737373"
             android:textColor="#2e332c"/>
 

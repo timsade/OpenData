@@ -39,6 +39,7 @@
                 android:text="Je visite"
                 android:id="@+id/cb_visite"
                 android:textSize="25dp"
+                android:checked="true"
                 android:background="#9bbd15"
                 android:textColor="#f0f0f0"
                 android:width="150dp"
@@ -78,9 +79,10 @@
             android:background="#9bbd15"
             android:textColor="#f0f0f0"
             android:width="140dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:layout_marginTop="500dp"/>
 
     </RelativeLayout>
 
@@ -116,6 +118,7 @@
                 android:layout_height="wrap_content"
                 android:text="moins de 18 ans"
                 android:id="@+id/cb_mineur"
+                android:checked="true"
                 android:textSize="25dp"
                 android:background="#9bbd15"
                 android:textColor="#f0f0f0"
@@ -178,9 +181,8 @@
             android:background="#9bbd15"
             android:textColor="#f0f0f0"
             android:width="140dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="500dp" />
 
     </RelativeLayout>
 
@@ -192,7 +194,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" A Strasbourg, vous aimez : "
+            android:text=" Vous aimez : "
             android:id="@+id/tv_q3"
             android:focusableInTouchMode="true"
             android:background="#9bbd15"
@@ -215,46 +217,45 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vous promener"
+                android:text="Vous promener "
                 android:id="@+id/cb_promene"
+                android:checked="true"
                 android:textSize="25dp"
                 android:background="#9bbd15"
                 android:textColor="#f0f0f0"
-                android:width="250dp"
                 android:layout_marginTop="50dp"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vous détendre"
+                android:text="Vous détendre "
                 android:id="@+id/cb_detente"
                 android:textSize="25dp"
                 android:background="#9bbd15"
                 android:textColor="#f0f0f0"
-                android:layout_marginTop="30dp"
-                android:width="250dp"/>
+                android:layout_marginTop="30dp"/>
+
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vous divertir"
-                android:id="@+id/cb_divert"
-                android:textSize="25dp"
-                android:background="#9bbd15"
-                android:textColor="#f0f0f0"
-                android:width="250dp"
-                android:layout_marginTop="30dp" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Vous cultiver"
+                android:text="Vous cultiver "
                 android:id="@+id/cb_culture"
                 android:textSize="25dp"
                 android:background="#9bbd15"
                 android:textColor="#f0f0f0"
-                android:width="250dp"
                 android:layout_marginTop="30dp" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vous divertir "
+                android:id="@+id/cb_divert"
+                android:textSize="25dp"
+                android:background="#9bbd15"
+                android:textColor="#f0f0f0"
+                android:layout_marginTop="30dp" />
+
 
         </RadioGroup>
 
@@ -267,9 +268,10 @@
             android:background="#9bbd15"
             android:textColor="#f0f0f0"
             android:width="140dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:layout_marginTop="500dp"/>
 
     </RelativeLayout>
 
@@ -281,7 +283,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Etes-vous sportif ? "
+            android:text=" Etes-vous  \n   sportif ? "
             android:id="@+id/tv_q4"
             android:focusableInTouchMode="true"
             android:background="#9bbd15"
@@ -306,6 +308,7 @@
                 android:layout_height="wrap_content"
                 android:text="Oui"
                 android:id="@+id/cb_sportoui"
+                android:checked="true"
                 android:textSize="25dp"
                 android:background="#9bbd15"
                 android:textColor="#f0f0f0"
@@ -334,9 +337,10 @@
             android:background="#9bbd15"
             android:textColor="#f0f0f0"
             android:width="140dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:layout_marginTop="500dp"/>
 
     </RelativeLayout>
 
@@ -348,7 +352,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Avez-vous des enfants ?"
+            android:text="  Avez-vous des enfants ?"
             android:id="@+id/tv_q5"
             android:focusableInTouchMode="true"
             android:background="#9bbd15"
@@ -375,6 +379,7 @@
                 android:text="Oui"
                 android:id="@+id/cb_enfoui"
                 android:textSize="25dp"
+                android:checked="true"
                 android:background="#9bbd15"
                 android:textColor="#f0f0f0"
                 android:width="120dp"
@@ -396,15 +401,16 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Valider"
+            android:text="Suivant >>"
             android:id="@+id/id_btn_valid"
             android:textSize="25dp"
             android:background="#9bbd15"
             android:textColor="#f0f0f0"
             android:width="140dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:layout_marginTop="500dp"/>
 
     </RelativeLayout>
 
@@ -412,6 +418,20 @@
         android:id="@+id/rep"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Données "
+            android:id="@+id/tv_inscription"
+            android:focusableInTouchMode="true"
+            android:textColor="#9bbd15"
+            android:textIsSelectable="false"
+            android:textSize="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -428,30 +448,13 @@
             android:textAlignment="center"
             android:layout_marginTop="10dp"/>
 
-        <CheckBox
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Spectacle"
-            android:id="@+id/id_spectacle"
-            android:layout_below="@+id/id_choix"
-            android:layout_marginTop="25dp" />
-
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Offices de tourisme"
-            android:id="@+id/id_offtour"
+            android:text="En fonction du questionnaire nous avons selectionné les données ci-dessous. Vous pouvez modifier cela en cochant ou décochant simplement :"
             android:layout_below="@+id/id_choix"
             android:layout_marginTop="50dp" />
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Promenades"
-            android:id="@+id/id_promenade"
-            android:layout_below="@+id/id_choix"
-            android:layout_marginTop="75dp" />
 
         <CheckBox
             android:layout_width="wrap_content"
@@ -542,6 +545,31 @@
             android:layout_below="@+id/id_choix"
             android:layout_marginTop="350dp" />
 
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spectacle"
+            android:id="@+id/id_spectacle"
+            android:layout_below="@+id/id_choix"
+            android:layout_marginTop="375dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Offices de tourisme"
+            android:id="@+id/id_offtour"
+            android:layout_below="@+id/id_choix"
+            android:layout_marginTop="400dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Promenades"
+            android:id="@+id/id_promenade"
+            android:layout_below="@+id/id_choix"
+            android:layout_marginTop="425dp" />
+
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -551,9 +579,13 @@
             android:background="#9bbd15"
             android:textColor="#f0f0f0"
             android:width="140dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:layout_marginTop="500dp"/>
+
+
+
 
     </RelativeLayout>
 
@@ -561,6 +593,7 @@
         android:id="@+id/r_affichage"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <TextView
         android:layout_width="wrap_content"

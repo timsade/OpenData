@@ -95,6 +95,7 @@ public class Data extends Activity implements OnDismissCallback {
 
         float distance = locationA.distanceTo(locationB);
 */
+
         if(preferences.getString("SXBN_exist", "").equals(""))
         {
             Intent intent = new Intent(Data.this, Questions.class);

@@ -47,8 +47,7 @@ public class Questions extends Activity {
     RadioGroup rg4;
     RadioGroup rg5;
 
-   AlertDialog.Builder msgError = new AlertDialog.Builder(this);
-
+   AlertDialog.Builder msgError;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
@@ -60,6 +59,9 @@ public class Questions extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question);
+
+        msgError = new AlertDialog.Builder(this);
+
 
         viewQuestions = (ViewFlipper) findViewById(R.id.viewQuestions);
 
@@ -103,50 +105,37 @@ public class Questions extends Activity {
         // Actions
         btn_next1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                //Teste si le bonhomme a répondu à la question, si oui passage au view next
-                if (!rg1.isActivated()) {
-                    msgError.show();
-                } else {
-                    viewQuestions.showNext();
-                }
+                  viewQuestions.showNext();
             }
         });
+
+        // Actions
         btn_next2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                //Teste si le bonhomme a répondu à la question, si oui passage au view next
-                if (!rg2.isActivated()) {
-                    msgError.show();
-                } else {
-                    viewQuestions.showNext();
-                }
+                viewQuestions.showNext();
             }
         });
+
+        // Actions
         btn_next3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                //Teste si le bonhomme a répondu à la question, si oui passage au view next
-                if (!rg3.isActivated()) {
-                    msgError.show();
-                } else {
-                    viewQuestions.showNext();
-                }
+                viewQuestions.showNext();
             }
         });
+
+        // Actions
         btn_next4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                //Teste si le bonhomme a répondu à la question, si oui passage au view next
-                if (!rg4.isActivated()) {
-                    msgError.show();
-                } else {
-                    viewQuestions.showNext();
-                }
+                viewQuestions.showNext();
             }
         });
+
 
         //Traitement des réponses (1er passage)
         btn_valid.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 //Teste si le bonhomme a répondu à la question, si oui passage au view next
-                if (!rg5.isActivated()) {
+                if (rg5.getCheckedRadioButtonId()==-1) {
                     msgError.show();
                 } else {
                     viewQuestions.showNext();
@@ -464,5 +453,7 @@ public class Questions extends Activity {
             }
         });
     }
+
+
 
 };

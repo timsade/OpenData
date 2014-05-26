@@ -58,7 +58,7 @@ public class Login extends Activity
 
         // initialisation d'une progress bar
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Please wait...");
+        progressDialog.setMessage("Veuillez patienter...");
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
 
@@ -71,8 +71,6 @@ public class Login extends Activity
 
         tv_subscribe.setOnClickListener(this.subscribeListener);
 
-        getPlaces = (TextView) findViewById(R.id.getPlaces);
-        getPlaces.setOnClickListener(this.placesListener);
 
         button.setOnClickListener(new View.OnClickListener()
         {
@@ -96,7 +94,7 @@ public class Login extends Activity
 
                 }
                 else
-                    createDialog("Error", "Please enter Username and Password");
+                    createDialog("Error", "Entrer un nom d'utilisateur et un mot de passe");
 
             }
 
@@ -172,7 +170,7 @@ public class Login extends Activity
                 {
 
                     progressDialog.dismiss();
-                    createDialog("Error", "Couldn't establish a connection");
+                    createDialog("Error", "Connexion impossible");
 
                 }
 
@@ -245,13 +243,13 @@ public class Login extends Activity
                 switch (Integer.parseInt(a.getValue("value")))
                 {
                     case 1:
-                        createDialog("Error", "Couldn't connect to Database");
+                        createDialog("Error", "Connexion BDD impossible");
                         break;
                     case 2:
-                        createDialog("Error", "Error in Database: Table missing");
+                        createDialog("Error", "Table manquante");
                         break;
                     case 3:
-                        createDialog("Error", "Invalid username and/or password");
+                        createDialog("Error", "Mauvaise combinaison utilisateur/mdp");
                         break;
                 }
                 error_occured = true;
@@ -306,15 +304,5 @@ public class Login extends Activity
         }
     };
 
-    public View.OnClickListener placesListener = new View.OnClickListener()
-    {
-
-        @Override
-        public void onClick(View v)
-        {
-            Intent intent = new Intent(Login.this, Places.class);
-            startActivity(intent);
-        }
-    };
 
 }

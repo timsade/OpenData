@@ -12,7 +12,7 @@
         android:layout_height="40dp"
         android:ems="10"
         android:gravity="left"
-        android:hint="Username"
+        android:hint="Nom d'utilisateur"
         android:inputType="textPersonName"
         android:paddingBottom="5dp"
         android:paddingLeft="8dp"
@@ -32,7 +32,7 @@
         android:layout_marginTop="10dp"
         android:ems="10"
         android:gravity="left"
-        android:hint="Password"
+        android:hint="Mot de passe"
         android:inputType="textPassword"
         android:paddingBottom="5dp"
         android:paddingLeft="8dp"
@@ -71,21 +71,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Les lieux"
-        android:id="@+id/getPlaces"
-        android:textColor="#ffffff"
-        android:focusableInTouchMode="true"
-        android:textIsSelectable="false"
-        android:textSize="20dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_alignBottom="@+id/tv_subscribe"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
 
 
 </RelativeLayout>
